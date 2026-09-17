@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Passenger Management</title>
+</head>
+
+<body>
+
+<h1>Passenger Management</h1>
+
+<a th:href="@{/passengers/add}">
+    Add New Passenger
+</a>
+
+<br><br>
+
+<table border="1" cellpadding="10">
+
+    <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Phone</th>
+        <th>Age</th>
+        <th>Gender</th>
+        <th>Action</th>
+    </tr>
+
+    <tr th:each="passenger : ${passengers}">
+
+        <td th:text="${passenger.id}"></td>
+        <td th:text="${passenger.name}"></td>
+        <td th:text="${passenger.email}"></td>
+        <td th:text="${passenger.phone}"></td>
+        <td th:text="${passenger.age}"></td>
+        <td th:text="${passenger.gender}"></td>
+
+        <td>
+
+            <a th:href="@{/passengers/edit/{id}(id=${passenger.id})}">
+                Edit
+            </a>
+
+            |
+
+            <a th:href="@{/passengers/delete/{id}(id=${passenger.id})}">
+                Delete
+            </a>
+
+        </td>
+
+    </tr>
+
+</table>
+
+<br>
+
+<a th:href="@{/flights}">
+    Flight Management
+</a>
+
+<br><br>
+
+<a th:href="@{/bookings}">
+    Booking Management
+</a>
+
+</body>
+</html>

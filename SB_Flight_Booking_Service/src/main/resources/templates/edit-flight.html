@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Edit Flight</title>
+</head>
+
+<body>
+
+<h1>Edit Flight</h1>
+
+<form th:action="@{/flights/update/{id}(id=${flight.id})}"
+      th:object="${flight}"
+      method="post">
+
+    <label>Flight Number:</label>
+    <input type="text" th:field="*{flightNumber}">
+    <br><br>
+
+    <label>Airline:</label>
+    <input type="text" th:field="*{airline}">
+    <br><br>
+
+    <label>Source:</label>
+    <input type="text" th:field="*{source}">
+    <br><br>
+
+    <label>Destination:</label>
+    <input type="text" th:field="*{destination}">
+    <br><br>
+
+    <label>Departure Time:</label>
+    <input type="text" th:field="*{departureTime}">
+    <br><br>
+
+    <label>Arrival Time:</label>
+    <input type="text" th:field="*{arrivalTime}">
+    <br><br>
+
+    <label>Total Seats:</label>
+    <input type="number" th:field="*{totalSeats}">
+    <br><br>
+
+    <label>Available Seats:</label>
+    <input type="number" th:field="*{availableSeats}">
+    <br><br>
+
+    <label>Price:</label>
+    <input type="number" step="0.01" th:field="*{price}">
+    <br><br>
+
+    <button type="submit">Update Flight</button>
+
+</form>
+
+<br>
+
+<a th:href="@{/flights}">
+    Back to Flights
+</a>
+
+</body>
+</html>

@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Add Booking</title>
+</head>
+
+<body>
+
+<h1>Add Booking</h1>
+
+<form th:action="@{/bookings/save}"
+      th:object="${booking}"
+      method="post">
+
+    <label>Booking Number:</label>
+    <input type="text" th:field="*{bookingNumber}">
+    <br><br>
+
+    <label>Booking Date:</label>
+    <input type="date" th:field="*{bookingDate}">
+    <br><br>
+
+    <label>Seat Number:</label>
+    <input type="text" th:field="*{seatNumber}">
+    <br><br>
+
+    <label>Status:</label>
+
+    <select th:field="*{status}">
+
+        <option value="">Select Status</option>
+        <option value="CONFIRMED">CONFIRMED</option>
+        <option value="PENDING">PENDING</option>
+        <option value="CANCELLED">CANCELLED</option>
+
+    </select>
+
+    <br><br>
+
+    <label>Total Amount:</label>
+    <input type="number"
+           step="0.01"
+           th:field="*{totalAmount}">
+    <br><br>
+
+    <label>Flight:</label>
+
+    <select th:field="*{flight.id}">
+
+        <option value="">Select Flight</option>
+
+        <option th:each="flight : ${flights}"
+                th:value="${flight.id}"
+                th:text="${flight.flightNumber + ' - ' + flight.source + ' to ' + flight.destination}">
+        </option>
+
+    </select>
+
+    <br><br>
+
+    <label>Passenger:</label>
+
+    <select th:field="*{passenger.id}">
+
+        <option value="">Select Passenger</option>
+
+        <option th:each="passenger : ${passengers}"
+                th:value="${passenger.id}"
+                th:text="${passenger.name + ' - ' + passenger.email}">
+        </option>
+
+    </select>
+
+    <br><br>
+
+    <button type="submit">
+        Save Booking
+    </button>
+
+</form>
+
+<br>
+
+<a th:href="@{/bookings}">
+    Back to Bookings
+</a>
+
+</body>
+</html>

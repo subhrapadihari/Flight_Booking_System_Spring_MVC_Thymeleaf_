@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Booking Management</title>
+</head>
+
+<body>
+
+<h1>Booking Management</h1>
+
+<a th:href="@{/bookings/add}">
+    Add New Booking
+</a>
+
+<br><br>
+
+<table border="1" cellpadding="10">
+
+    <tr>
+        <th>ID</th>
+        <th>Booking Number</th>
+        <th>Booking Date</th>
+        <th>Seat Number</th>
+        <th>Status</th>
+        <th>Total Amount</th>
+        <th>Flight</th>
+        <th>Passenger</th>
+        <th>Action</th>
+    </tr>
+
+    <tr th:each="booking : ${bookings}">
+
+        <td th:text="${booking.id}"></td>
+
+        <td th:text="${booking.bookingNumber}"></td>
+
+        <td th:text="${booking.bookingDate}"></td>
+
+        <td th:text="${booking.seatNumber}"></td>
+
+        <td th:text="${booking.status}"></td>
+
+        <td th:text="${booking.totalAmount}"></td>
+
+        <td th:text="${booking.flight.flightNumber}"></td>
+
+        <td th:text="${booking.passenger.name}"></td>
+
+        <td>
+
+            <a th:href="@{/bookings/edit/{id}(id=${booking.id})}">
+                Edit
+            </a>
+
+            |
+
+            <a th:href="@{/bookings/delete/{id}(id=${booking.id})}">
+                Delete
+            </a>
+
+        </td>
+
+    </tr>
+
+</table>
+
+<br>
+
+<a th:href="@{/flights}">
+    Flight Management
+</a>
+
+<br><br>
+
+<a th:href="@{/passengers}">
+    Passenger Management
+</a>
+
+</body>
+</html>
